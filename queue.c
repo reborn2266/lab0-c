@@ -180,8 +180,23 @@ done:
  */
 void q_reverse(queue_t *q)
 {
-    /* TODO: You need to write the code for this function */
-    /* TODO: Remove the above comment when you are about to implement. */
+    list_ele_t *nxt, *cur, *prev;
+
+    if (!q || !q->head || q->len == 1)
+        return;
+
+    q->parent_of_tail = q->head->next;
+
+    cur = q->head;
+    prev = NULL;
+
+    while (cur) {
+        nxt = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = nxt;
+    }
+    q->head = prev;
 }
 
 /*
